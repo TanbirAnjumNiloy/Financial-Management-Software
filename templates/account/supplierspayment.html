@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Inventory Management System</title>
+    <style>
+      /* Add your CSS styles here */
+    </style>
+  </head>
+  <body>
+    <form action="{% url 'supplierspayment' %}" method="POST">
+      {% csrf_token %}
+
+      
+
+      <div>
+        <label for="supplier">Supplier:</label>
+        <select id="supplier" name="supplier" required>
+          {% for supplier in suppliers %}
+            <option value="{{ supplier.id }}">{{ supplier.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div>
+        <label for="branch">Branch:</label>
+        <select id="branch" name="bank" onchange="updateBankNameAndAccountNumber()" required>
+          <option value="">Select Branch</option>
+          {% for bank in banks %}
+          <option value="{{ bank.id }}" data-bank-name="{{ bank.bank_name }}" data-account-no="{{ bank.account_no }}" data-current-balance="{{ bank.current_balance|default:0 }}">{{ bank.branch }}</option>
+          {% endfor %}
+      </select>
+      </div>
+      <div>
+        <label for="bank">Bank Name:</label>
+        <select id="bank_name" name="bank_name" >
+          <option value="">Select Bank</option>
+          {% for bank in banks %}
+          <option value="{{ bank.bank_name }}">{{ bank.bank_name }}</option>
+          {% endfor %}
+      </select>
+      </div>
+      <div>
+        <label for="ac_no">A/c No:</label>
+        <select id="account_number" name="account_number" >
+          <option value="">Select Account Number</option>
+          {% for bank in banks %}
+          <option value="{{ bank.account_no }}">{{ bank.account_no }}</option>
+          {% endfor %}
+      </select>
+      </div>
+      
+      <div>
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" name="amount" required required>
+      </div>
+      <div>
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required required>
+      </div>
+      <div>
+        <input type="submit" value="Save">
+        <a href="{% url 'account' %}"><button type="button">Exit</button></a>
+      </div>
+    </form>
+  </body>
+</html>
+
+
+
+<script>
+  function updateBankNameAndAccountNumber() {
+      const branchSelect = document.getElementById('branch');
+      const bankNameSelect = document.getElementById('bank_name');
+      const accountNumberSelect = document.getElementById('account_number');
+      const currentBalanceInput = document.getElementById('current_balance');
+  
+      const selectedBank = branchSelect.options[branchSelect.selectedIndex];
+      const bankName = selectedBank.getAttribute('data-bank-name');
+      const accountNumber = selectedBank.getAttribute('data-account-no');
+      const currentBalance = selectedBank.getAttribute('data-current-balance');
+  
+      bankNameSelect.value = bankName;
+      accountNumberSelect.value = accountNumber;
+      currentBalanceInput.value = currentBalance;
+  }
+  </script>
+
+
+<style>
+    /* Styles for the form */
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    form h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    form div {
+      margin-bottom: 10px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    form input[type="text"],
+    form select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      font-size: 16px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    form input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      font-size: 16px;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    form input[type="submit"],
+    form button[type="button"] {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    form input[type="submit"]:hover,
+    form button[type="button"]:hover {
+      background-color: #45a049;
+    }
+
+    /* Styles for the select dropdowns */
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      font-size: 16px;
+      color: #555;
+      margin-top: 5px;
+      background-color: #fff;
+      background-image: none;
+    }
+
+    /* Styles for the button to exit */
+    button[type="button"] {
+      background-color: #bbb;
+      color: white;
+      margin-left: 10px;
+    }
+
+    button[type="button"]:hover {
+      background-color: #999;
+    }
+  </style>

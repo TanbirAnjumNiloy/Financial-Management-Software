@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>SL No.</th>
+                <th>Supplier Name</th>
+                <th>Date</th>
+                <th>Balance</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for redamage in redamage_data %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ redamage.supplier.name }}</td>
+                <td>{{ redamage.date }}</td>
+                <td>{{ redamage.amount }}</td>
+                <td>{{ redamage.description }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

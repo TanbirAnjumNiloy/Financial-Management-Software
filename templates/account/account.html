@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+</head>
+
+<style type="text/css">
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .container > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  .container > div img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .container > div h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #333;
+    margin: 0;
+    font-weight: bold;
+  }
+  
+  .container a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .container a:hover {
+    color: #0077b6;
+  }
+
+  /* Media queries */
+  @media screen and (max-width: 768px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .container > div {
+      margin-bottom: 20px;
+    }
+  }
+
+</style>
+
+<div class="container">
+  <div>
+    <a href="{% url 'lifting' %}">
+    <img src="{% static 'assets/img/warehouse.png' %}" alt="Suppliers Setup icon">
+    <h2>Lifting</h2>
+  </a>
+  </div>
+  <div>
+    <a href="{% url 'sales' %}">
+    <img src="{% static 'assets/img/for-sale.png' %}" alt="sells Setup icon">
+    <h2>Sales</h2>
+  </a>
+  </div>
+  <div>
+    <a href="{% url 'damage' %}">
+    <img src="{% static 'assets/img/damage.png' %}" alt="Group Name icon">
+    <h2>Damage</h2>
+  </a>
+  </div>
+  <div>
+    <a href="{% url 'supplierspayment' %}">
+    <img src="{% static 'assets/img/payment-method.png' %}" alt="Product Name icon"> 
+    <h2> Payment</h2>
+    </a>
+  </div>
+  
+  <div>
+    <a href="">
+    <img src="{% static 'assets/img/agent.png' %}" alt="Market Setup icon">
+    <h2>Bank</h2>
+  </a>
+  </div>
+  
+  <div>
+    <a href="{% url 'dailycost' %}">
+    <img src="{% static 'assets/img/cost.png' %}" alt="Market Setup icon">
+    <h2>Daily Cost </h2>
+  </a>
+  </div>
+
+
+  <div>
+    <a href="{% url 'redamage' %}">
+    <img src="{% static 'assets/img/accounting.png' %}" alt="Market Setup icon">
+    <h2>Re-Damage</h2>
+  </a>
+  </div>
+
+  <div>
+    <a href="{% url 'displaybill' %}">
+    <img src="{% static 'assets/img/bill.png' %}" alt="Market Setup icon">
+    <h2>Displaybill</h2>
+  </a>
+  </div>
+
+  <div> <!-- Move the "Claim" div inside the main container div -->
+    <a href="{% url 'claim' %}">
+    <img src="{% static 'assets/img/claim.png' %}" alt="Market Setup icon">
+    <h2>Claim</h2>
+    </a>
+  </div>
+
+  <div>
+    <a href="{% url 'collection' %}">
+    <img src="{% static 'assets/img/file.png' %}" alt="Market Setup icon">
+    <h2>Collection </h2>
+  </a>
+  </div>
+
+  
+</div>
+
+
+
+
+
+ 
+
+{% endblock %}

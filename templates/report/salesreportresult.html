@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Table Example</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: center;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    tfoot td {
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>SL NO</th>
+                <th>Date</th>
+                <th>DSR Name</th>
+                <th>Market Name</th>
+                <th>PSR Taka</th>
+                <th>Holesale Taka</th>
+                <th>Retail Taka</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in sales_records %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.dsr.name }}</td>
+                <td>{{ record.market.area }}</td>
+                <td>{{ record.psr_taka }}</td>
+                <td>{{ record.holesale_taka }}</td>
+                <td>{{ record.retail_taka }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4" style="text-align:right">Total:</td>
+                <td>{{ total_psr_taka }}</td>
+                <td>{{ total_holesale_taka }}</td>
+                <td>{{ total_retail_taka }}</td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:right">Total Profit:</td>
+                <td>{{ total_profit_psr }}</td>
+                <td>{{ total_profit_holesale }}</td>
+                <td>{{ total_profit_retail }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

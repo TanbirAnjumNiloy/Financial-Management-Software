@@ -1,0 +1,69 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tfoot td {
+    font-weight: bold;
+    background-color: #f2f2f2;
+}
+
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Lifting Report</title>
+</head>
+<body>
+  <table>
+      <thead>
+          <tr>
+            <th>SL NO</th>
+              <th>Supplier Name</th>
+              <th>Date</th>
+              <th>Payment Balance</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for lift in filtered_lifts %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+              <td>{{ lift.supplier.name }}</td>
+              <td>{{ lift.date }}</td>
+              <td>{{ lift.liftingpayment }}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+      <tfoot>
+          <tr>
+              <td colspan="3">Total</td>
+              <td>{{ total_filtered_lifts }}</td>
+          </tr>
+      </tfoot>
+  </table>
+</body>
+
+</html>

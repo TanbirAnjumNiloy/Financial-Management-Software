@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bank Setup Form</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			background-color: #f2f2f2;
+		}
+
+		.container {
+			background-color: #ffffff;
+			border-radius: 5px;
+			padding: 20px;
+			margin: 50px auto;
+			max-width: 500px;
+			box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+		}
+
+		h1 {
+			text-align: center;
+			margin-top: 0;
+			color: #333;
+		}
+
+		form {
+			display: grid;
+			grid-gap: 10px;
+		}
+
+		label {
+			display: block;
+			font-weight: bold;
+			margin-bottom: 5px;
+			color: #333;
+		}
+
+		input[type="text"], select {
+			border-radius: 5px;
+			padding: 10px;
+			font-size: 16px;
+			width: 100%;
+			box-sizing: border-box;
+			margin-bottom: 10px;
+		}
+
+		.option {
+			display: flex;
+			align-items: center;
+		}
+
+		.option label {
+			margin-right: 10px;
+		}
+
+		.btn {
+			background-color: #4CAF50;
+			color: white;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		.btn:hover {
+			background-color: #3e8e41;
+		}
+
+		.btn.exit {
+			background-color: #f44336;
+		}
+
+		.btn.exit:hover {
+			background-color: #d32f2f;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>Bank Setup Form</h1>
+		<form action="{% url 'bank_setup' %}" method="post">
+			{% csrf_token %}
+			<label for="bank-name">Bank Name</label>
+			<input type="text" id="bank-name" name="bank_name" required>
+
+			<label for="account-no">Account No</label>
+			<input type="text" id="account-no" name="account_no" required>
+
+			<label for="branch">Branch</label>
+			<input type="text" id="branch" name="branch" required>
+
+			
+
+			<div class="option">
+				<input type="radio" id="deposit-ac" name="account_type" value="deposit" checked>
+				<label for="deposit-ac">Deposit A/c</label>
+			</div>
+
+			<div class="option">
+				<input type="radio" id="cc-ac" name="account_type" value="cc">
+				<label for="cc-ac">CC A/c</label>
+			</div>
+
+			<input type="submit" value="Save" class="btn">
+
+			
+			
+
+			<button type="submit" class="btn exit" onclick="window.location.href='{% url 'setup' %}'">Exit</button>
+		</form>
+	</div>
+</body>
+</html>

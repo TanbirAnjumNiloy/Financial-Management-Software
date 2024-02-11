@@ -1,0 +1,82 @@
+<body>
+    <h1>Backdate Display Bill</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <label for="display_bill">Select Display Bill Entry:</label>
+        <select id="display_bill" name="display_bill" required>
+            {% for display_bill in display_bills %}
+            <option value="{{ display_bill.id }}">{{ display_bill.date }} - {{ display_bill.supplier.name }} - {{ display_bill.amount }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="new_date">New Date:</label>
+        <input type="date" id="new_date" name="new_date" required>
+
+        <button type="submit">Update</button>
+    </form>
+</body>
+
+
+<style>
+    /* Reset some default browser styles */
+body, h1, form {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 20px;
+}
+
+/* Style the header (h1) */
+h1 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style the form container */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style labels */
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Style select and input fields */
+select, input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Style the submit button */
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+</style>

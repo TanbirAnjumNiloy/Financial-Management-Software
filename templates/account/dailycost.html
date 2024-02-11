@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSR Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        select, input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <form action="{% url 'dailycost' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="dsr-dropdown">DSR:</label>
+                <select name="dsr" id="dsr-dropdown">
+                    {% for dsr  in dsrs %}
+                    <option value="{{ dsr.id }}">{{ dsr.name }}</option>
+                    {% endfor %}
+                </select>
+                
+                
+            </div>
+
+            <div class="form-group" >
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date" required>
+              </div>
+
+              <div class="form-group">
+                <label for="car-cost">Car Cost:</label>
+                <input type="number" id="car-cost" name="car_cost" step="0.01" value="0.00">
+            </div>
+            <div class="form-group">
+                <label for="dsr-bill">DSR Bill:</label>
+                <input type="number" id="dsr-bill" name="dsr_bill" step="0.01" value="0.00">
+            </div>
+            <div class="form-group">
+                <label for="toll">Toll:</label>
+                <input type="number" id="toll" name="toll" step="0.01" value="0.00">
+            </div>
+            <div class="form-group">
+                <label for="other-cost">Other Cost:</label>
+                <input type="number" id="other-cost" name="other_cost" step="0.01" value="0.00">
+            </div>
+            
+            <div class="form-group">
+                <label for="other-cost">Discription:</label>
+                <input type="text" id="discription" name="discription" >
+            </div>
+            <div class="button-group"> 
+                <button type="submit">Save</button>
+                <a href="{% url 'account' %}"><button type="button" onclick="window.close();">Exit</button></a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

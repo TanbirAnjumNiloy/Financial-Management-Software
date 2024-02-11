@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Claim Bill</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Claim Bill</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>SLNO</th>
+                    <th>Supplier Name</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for claim in claims %}
+                <tr>
+                    <td>{{ claim.pk }}</td>
+                    <td>{{ claim.supplier.name }}</td>
+                    <td>{{ claim.date }}</td>
+                    <td>{{ claim.amount }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total</td>
+                    <td>{{ total_claim }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</body>
+
+
+</html>
+
+
+
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    
+    .container {
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    
+    th, td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+        font-weight: bold;
+    }
+    
+    tfoot td {
+        font-weight: bold;
+    }
+    
+</style>

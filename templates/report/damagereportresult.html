@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Damage Taka Table</title>
+	<style>
+		table {
+			border-collapse: collapse;
+			width: 100%;
+			border: 1px solid #ccc;
+		}
+		th, td {
+			padding: 8px;
+			text-align: left;
+			border-bottom: 1px solid #ccc;
+            text-align: center;
+		}
+		th {
+			background-color: #555;
+			color: white;
+		}
+		tfoot td {
+			font-weight: bold;
+		}
+		tbody tr:nth-child(even) {
+			background-color: #f2f2f2;
+		}
+		tbody tr:nth-child(odd) {
+			background-color: #ffffff;
+		}
+		tfoot tr {
+			background-color: #f2f2f2;
+		}
+	</style>
+</head>
+<body>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Serial Number</th>
+                <th>Supplier Name</th>
+                <th>Date</th>
+                <th>Market Name</th>
+                <th>DSR Name</th>
+                <th>Damage Taka</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in damage_records %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ record.supplier.name }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.market.area }}</td>
+                <td>{{ record.dsr.name }}</td>
+                <td>{{ record.damagetaka }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" style="text-align:right">Total:</td>
+                <td>{{ total_damage_taka }}</td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        select, input, button {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            background-color: #4caf50;
+            color: #ffffff;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button[type="button"] {
+            background-color: #f44336;
+        }
+        button[type="button"]:hover {
+            background-color: #e53935;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form</h1>
+    <form action="" method="POST">
+      {% csrf_token %}
+        <label for="supplier">Select Supplier:</label>
+        <select id="supplier" name="supplier" required>
+          {% for supplier in suppliers %}
+          <option value="{{ supplier.id }}">{{ supplier.name }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="market">Select Market:</label>
+        <select id="market" name="market" required>
+          {% for market in markets %}
+          <option value="{{ market.id }}">{{ market.area }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="dsr">Select DSR:</label>
+        <select id="dsr" name="dsr" required>
+          {% for dsr in dsrs %}
+          <option value="{{ dsr.id }}">{{ dsr.name }}</option>
+          {% endfor %}
+        </select>
+
+        <label for="date">Date:</label >
+        <input type="date" id="date" name="date" required>
+
+        <label for="damage_taka">Damage Taka:</label>
+        <input type="number" id="damage_taka" name="damage_taka" required>
+
+        <div class="buttons">
+            <button type="submit">Save</button>
+            <a href="{% url 'account' %}"><button type="button" onclick="window.close();">Exit</button></a>
+        </div>
+    </form>
+</body>
+</html>

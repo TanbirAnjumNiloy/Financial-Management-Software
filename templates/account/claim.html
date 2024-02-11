@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .form-section {
+            background-color: #fff;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #5C6BC0;
+            color: #fff;
+            padding: 10px 15px;
+            border: 0;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #303F9F;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h2>Claim Form</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="supplier">Supplier:</label>
+                <select id="supplier" name="supplier" required>
+                    {% for supplier in suppliers %}
+                    <option value="{{ supplier.id }}">{{ supplier.name }}</option>
+                    {% endfor %}
+                </select>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" name="date">
+
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" step="0.01">
+
+                <button type="submit">Save</button>
+                <a href="{% url 'account' %}">  <button type="button" onclick="window.close();">Exit</button> </a>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

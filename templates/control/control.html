@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Admin Panel</title>
+      <style>
+         /* Reset some default styles */
+         body, h1, h2, h3, p {
+         margin: 0;
+         padding: 0;
+         }
+         body {
+         font-family: Arial, sans-serif;
+         background-color: #f4f4f4;
+         }
+         /* Sidebar Styles */
+         #sidebar {
+         width: 250px;
+         background-color: #e4b662;
+         color: #fff;
+         position: fixed;
+         height: 100%;
+         overflow: auto;
+         padding-top: 20px; /* Add padding at the top to separate links from top edge */
+         }
+         #sidebar a {
+         display: block;
+         padding: 15px 25px; /* Adjust padding for links */
+         text-decoration: none;
+         color: #000552;
+         transition: background-color 0.3s;
+         }
+         #sidebar a:hover {
+         background-color: #08f7f7;
+         }
+         /* Style for the active link (e.g., the current page) */
+         #sidebar a.active {
+         background-color: #3498db; /* Change the background color for active link */
+         color: #fff; /* Change the text color for active link */
+         }
+         /* Add a line to separate links and a subtle shadow for a layered effect */
+         #sidebar a:not(:last-child) {
+         border-bottom: 1px solid #4aa894;
+         }
+         /* Optional: Add a logo or an image at the top of the sidebar */
+         #sidebar .logo {
+         text-align: center;
+         margin-bottom: 20px;
+         }
+         #sidebar .logo img {
+         width: 80px; /* Adjust the logo/image width */
+         }
+         /* Content Styles */
+         #content {
+         margin-left: 250px;
+         padding: 30px;
+         }
+         /* Header Styles */
+         /* Header Styles */
+         #header {
+         background-color: #3498db;
+         color: #fff;
+         padding: 10px 0;
+         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         }
+         #header h1 {
+         font-size: 24px;
+         margin-left: 20px;
+         }
+         #header a {
+         text-decoration: none;
+         color: #fff;
+         padding: 10px 20px;
+         margin: 0 5px;
+         border-radius: 5px;
+         transition: background-color 0.3s;
+         }
+         #header a:hover {
+         background-color: #2980b9;
+         }
+         /* Adjust hover background color as needed */
+         /* Center the header content horizontally */
+         #header {
+         text-align: center;
+         }
+         /* Main Content Area Styles */
+         .page-title {
+         font-size: 24px;
+         margin-bottom: 10px;
+         }
+         /* Example Card Styles */
+         .card {
+         background-color: #fff;
+         padding: 20px;
+         border-radius: 5px;
+         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+         margin-bottom: 20px;
+         }
+         /* Dropdown Styles */
+         .dropdown {
+         position: relative;
+         display: inline-block;
+         margin-right: 20px;
+         }
+         .dropdown:hover .dropdown-content {
+         display: block;
+         }
+         .dropdown-content {
+         display: none;
+         position: absolute;
+         background-color: #fff;
+         min-width: 160px;
+         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+         z-index: 1;
+         border-radius: 5px;
+         padding: 8px 0;
+         }
+         .dropdown-content p {
+         color: #333;
+         padding: 10px 20px;
+         text-decoration: none;
+         display: block;
+         transition: background-color 0.3s;
+         white-space: nowrap;
+         }
+         .dropdown-content p:hover {
+         background-color: #f5f5f5;
+         }
+         /* Buttons */
+         .logout-button,
+         .home {
+         background-color: #3498db;
+         color: #fff;
+         padding: 10px 20px;
+         border: none;
+         border-radius: 5px;
+         cursor: pointer;
+         font-size: 16px;
+         text-decoration: none;
+         margin-right: 20px;
+         display: inline-block;
+         }
+         .logout-button:hover,
+         .home:hover {
+         background-color: #2980b9;
+         }
+         .options {
+         margin: 0.5in auto; /* Center the options div and add a 1-inch margin below it */
+         text-align: center; /* Center the content horizontally */
+         }
+      </style>
+   </head>
+   <body>
+      <div id="sidebar">
+         <a href="#">Dashboard</a>
+         <a href="#">Users</a>
+         <a href="#">Settings</a>
+      </div>
+      <div id="content">
+         <div id="header">
+            <h1>Admin Panel</h1>
+            <a href="{% url 'setup' %}" >Setup</a>
+            <a href="{% url 'account' %}" >Account</a>
+            <a href="{% url 'report' %}" >Analyses</a>
+            <a href="{% url 'logout' %}" >Logout</a>
+         </div>
+         <div class="options">
+            <div class="dropdown">
+               Setup Update
+               <div class="dropdown-content">
+                  <p><a href="">Supplier</a></button> </p>
+                  <p><a href="">Brand</a> </p>
+                  <p><a href="">Market</a></p>
+                  <p><a href="">Product Name</a></p>
+                  <p><a href="{% url 'collectionmanname' %}">Collection Man Name</a></p>
+                  <p><a href="">DSR</a> </p>
+                  <p><a href="">Bank</a></p>
+               </div>
+            </div>
+            <div class="dropdown">
+               Entry Update
+               <div class="dropdown-content">
+                  <p><a href="">Lifting Update</a></button> </p>
+                  <p><a href="">Supplier Payment</a></button> </p>
+               </div>
+            </div>
+            <div class="dropdown">
+               Back Date
+               <div class="dropdown-content">
+                  <p><a href="">Lifting Backdate</a></p>
+                  <p><a href="">Sales Backdate</a></p>
+                  <p><a href="{% url 'damagebackdate' %}">Damage Backdate</a></p>
+                  <p><a href="{% url 'dailycostbackdate' %}">Daily cost Backdate</a></p>
+                  <p><a href="{% url 'displaybackdate' %}">Display Bill Backdate</a></p>
+               </div>
+            </div>
+            <div class="dropdown">
+               Delate
+               <div class="dropdown-content">
+                  <p><a href="">Lifting Delate</a></p>
+                  <p><a href="">Sales Delate</a></p>
+                  <p><a href="">Damage Delate</a></p>
+               </div>
+            </div>
+            <a href=""><button class="logout-button">Logout</button></a>
+            <a href="{% url 'setup' %}"><button class="home">Home</button></a>
+         </div>
+      </div>
+      </div>
+   </body>
+</html>
